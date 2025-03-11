@@ -7,8 +7,6 @@ sync_job:
     - git clone --mirror https://github.com/Pankaj-Kamate/osn-project.git osn-project
     - cd osn-project
     - git push --mirror https://gitlab.com/cicd-project-group1/osn-project.git
-  only:
-    - schedules
 
 # last step in the pipeline to report status
 # using CI_JOB_STATUS requires a more modern gitlab runner as in my lab
