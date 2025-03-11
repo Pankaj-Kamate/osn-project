@@ -6,7 +6,7 @@ Only changes in master will provision the changes in the network, non-master bra
 
 The main purpose of this is to show the power of NSO when used within a Network as Code use case. It's FASTMAP capabilities can keep the pipeline very simple as all the additions, changes and deletions are handled within NSO.
 
-The pipeline invokes the Python script (scripts/provision.py) which essentially does the following:
+The pipeline invokes the Python script ([scripts/provision.py](https://github.com/oboehmer/nso-service-as-code/blob/master/scripts/provision.py)) which essentially does the following:
 
 Retrieves all currently provisioned customers with this service
 Reads each service file (i.e. l2vpn/cust1.yaml) and pushes the service data using a RESTCONF PUT request (with all service instances for this customer). This PUT requests triggers NSO to derive all the required changes and implements them in the network devices.
