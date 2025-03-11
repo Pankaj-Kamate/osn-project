@@ -1,7 +1,7 @@
 NSO Service as Code
 This is a "Network as Code" CICD pipeline which provisions a Layer2VPN p2p/VPWS service onto a IOS-XE network via NSO. This example demonstrate on how to use NSO to maintain network service configurations via a CICD pipeline, supporting create, update and delete operations on the service.
 
-The repository hosts the customer service data in the l2vpn/ directory as one yaml file per customer, any changes to these files (actually to all files in the repo) will trigger a CICD pipeline which provisions the service(s) on the network.
+The repository hosts the customer service data in the [l2vpn/](https://github.com/oboehmer/nso-service-as-code/tree/master/l2vpn) directory as one yaml file per customer, any changes to these files (actually to all files in the repo) will trigger a CICD pipeline which provisions the service(s) on the network.
 Only changes in master will provision the changes in the network, non-master branches trigger a so-called dry-run commit which only verifies the service data, but not perform any changes on the network.
 
 The main purpose of this is to show the power of NSO when used within a Network as Code use case. It's FASTMAP capabilities can keep the pipeline very simple as all the additions, changes and deletions are handled within NSO.
