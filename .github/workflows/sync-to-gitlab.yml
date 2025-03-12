@@ -23,6 +23,8 @@ jobs:
         GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
       run: |
         git remote add gitlab https://oauth2:$GITLAB_TOKEN@gitlab.com/cicd-project-group1/project-nso.git
+        git fetch gitlab
+        git merge gitlab/main --no-edit || git rebase gitlab/main --no-ff
 
     - name: Push to GitLab
       env:
