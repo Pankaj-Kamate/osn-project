@@ -1,4 +1,4 @@
-##sync to gitlab
+##sync to gitlab update
 name: Sync to GitLab
 
 on:
