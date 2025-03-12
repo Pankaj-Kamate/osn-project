@@ -1,4 +1,3 @@
-##sync to gitlab update
 name: Sync to GitLab
 
 on:
@@ -14,9 +13,21 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Push to GitLab
+    - name: Configure Git
+      run: |
+        git config --global user.name "Pankaj-Kamate"
+        git config --global user.email "pankajkamate@gmail.com"
+
+    - name: Fetch from GitLab and Integrate
       env:
         GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
       run: |
         git remote add gitlab https://oauth2:$GITLAB_TOKEN@gitlab.com/cicd-project-group1/project-nso.git
-        git push -u gitlab main
+        git fetch gitlab
+        git merge gitlab/main --no-edit || git rebase gitlab/main
+
+    - name: Push to GitLab
+      env:
+        GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+      run: |
+        git push gitlab main
