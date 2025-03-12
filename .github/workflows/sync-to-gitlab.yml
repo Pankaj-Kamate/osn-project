@@ -24,10 +24,12 @@ jobs:
       run: |
         git remote add gitlab https://oauth2:$GITLAB_TOKEN@gitlab.com/cicd-project-group1/project-nso.git
         git fetch gitlab
-        git merge gitlab/main --no-edit || git rebase gitlab/main --no-ff
+        git merge gitlab/main --no-edit --allow-unrelated-histories || true  # Allow unrelated histories
 
-    - name: Push to GitLab
+    - name: Resolve Conflicts and Push to GitLab
+      if: success() || failure()  # Continue even if there was a conflict
       env:
         GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
       run: |
+        git merge --strategy-option theirs  # Resolve conflicts by preferring GitLab changes
         git push gitlab main
