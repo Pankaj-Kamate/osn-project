@@ -18,5 +18,5 @@ jobs:
       env:
         GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
       run: |
-        git remote add gitlab https://oauth2:$GITLAB_TOKEN@gitlab.com/cicd-project-group1/osn-project.git
+        git remote add gitlab https://oauth2:$GITLAB_TOKEN@gitlab.com/cicd-project-group1/project-nso.git
         git push -u gitlab main
