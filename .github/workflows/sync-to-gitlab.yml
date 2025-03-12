@@ -24,7 +24,7 @@ jobs:
       run: |
         git remote add gitlab https://oauth2:$GITLAB_TOKEN@gitlab.com/cicd-project-group1/project-nso.git
         git fetch gitlab
-        git merge gitlab/main --no-edit || git rebase gitlab/main
+        git merge gitlab/main --no-edit --allow-unrelated-histories || git rebase gitlab/main --no-ff --allow-unrelated-histories
 
     - name: Push to GitLab
       env:
