@@ -1,0 +1,22 @@
+##sync to gitlab
+name: Sync to GitLab
+
+on:
+  push:
+    branches:
+      - main  # Change to your default branch if different
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Push to GitLab
+      env:
+        GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+      run: |
+        git remote add gitlab https://oauth2:$GITLAB_TOKEN@gitlab.com/cicd-project-group1/osn-project.git
+        git push -u gitlab main
